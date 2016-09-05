@@ -4,7 +4,7 @@
       <li>
         <%= image_tag photo.file.url(:thumb) %>
         <br/>
-        Title: <%= photo.title %>
+        Title: <%= photo.title.gsub(/^(.{20,}?).*$/m,'\1...') %>
         <br/>
         Date: <%= photo.created_at.strftime("%Y/%m/%d") %>
       </li>
