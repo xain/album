@@ -19,6 +19,7 @@ class Photo < ActiveRecord::Base
 	def tag_list=(val)
 		self.tags = []
 		val.strip.split(' ').each do |tag_name|
+			next if tag_name == '-'
 			tag = Tag.find_or_create_by(name: tag_name)
 			self.tags << tag
 		end
