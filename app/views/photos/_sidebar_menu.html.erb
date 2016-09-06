@@ -1,0 +1,8 @@
+<ul class='tags'>
+        <li> <a data-remote="true" href="/fetch_items?tag_id=0">unTag</a> </li>
+        <%tags.each do |tag| %>
+        	<li>
+        		<%= link_to tag.name, fetch_items_path(:tag_id => tag.id), :remote => true %>
+        	</li>
+        <% end %>
+</ul>

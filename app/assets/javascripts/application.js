@@ -14,23 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-$(function() {
-  var loadingHTML = "<div class='loading'>Loading...</div>";
 
-  $(document.body).off('click', 'nav.pagination a');
-  $(document.body).on('click', 'nav.pagination a', function(e) {
-    e.preventDefault();
-    var url = $(this).attr("href")
-    $("#photos_container").html(loadingHTML).load(url, function() {
-      // push state after the content has finished loading to update the URL and save in history stack
-      window.history.pushState(url, window.title, url);
-    });
-    return false;
-  });
+//= require best_in_place
 
-  $(window).bind('popstate', function(event) {
-    var url = location.href;
-    // reload HTML once user presses back / forward button
-    $("#photos_container").html(loadingHTML).load(url);
-  });
+
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
 });

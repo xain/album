@@ -47,3 +47,5 @@ end
 
 gem 'kaminari', '~> 0.16.3'
 gem 'paperclip', '~> 4.3.2'
+gem 'best_in_place', '~> 3.0.1'
+gem 'responders', '~> 2.0'

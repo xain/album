@@ -13,6 +13,18 @@
  *= require_tree .
  *= require_self
  */
+#wrap {
+   width:800px;
+   margin:0 auto;
+}
+#left_col {
+   float:left;
+   width:300px;
+}
+#right_col {
+   float:right;
+   width:500px;
+}
 
 .clearfix:after {
    visibility: hidden;
@@ -33,6 +45,14 @@ body {
   font-size: 13px;
 }
 
+ul.tags li {
+	height: 50px;
+}
+
+.tag_field input {
+    width: 120px;
+}
+
 ul.photos {
   width: 500px;
   margin: 0 auto;
@@ -43,7 +63,6 @@ ul.photos {
 ul.photos li {
   float: left;
   width: 250px;
-  text-align: center;
   margin-top: 20px;
   color: #333;
   font-size: 13px;

@@ -27,4 +27,5 @@
 ].each do |book_data|
   book = Photo.new({ title: book_data[:title], file: URI.parse(book_data[:cover]) })
   book.save
+  ['Family', 'Animals', 'Children'].each {|n| Tag.create(:name => n)}
 end

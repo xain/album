@@ -1,15 +1,12 @@
-<div id='photos_container'>
-  <ul class='photos clearfix'>
-    <% @photos.each do |photo| %>
-      <li>
-        <%= image_tag photo.file.url(:thumb) %>
-        <br/>
-        Title: <%= photo.title.gsub(/^(.{20,}?).*$/m,'\1...') %>
-        <br/>
-        Date: <%= photo.created_at.strftime("%Y/%m/%d") %>
-      </li>
-    <% end %>
-  </ul>
-
-  <%= paginate @photos %>
+<div id="wrap">
+    <div id="left_col">
+    	<h2>Tags</h2>
+        <div id='tags_container'>
+    		<%= render partial: 'sidebar_menu', locals: { tags: @tags} %>
+    	</div>
+    </div>
+    <div id="right_col">
+		<%= render partial: 'item_grid', locals: { items: @photos} %>
+    </div>
 </div>
+

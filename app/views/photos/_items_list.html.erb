@@ -1,0 +1,26 @@
+<ul class='photos clearfix'>
+	<% items.each do |photo| %>
+	  <li>
+	    <%= image_tag photo.file.url(:thumb) %>
+	    <br/>
+	    Title: <%= photo.title.gsub(/^(.{20,}?).*$/m,'\1...') %>
+	    <br/>
+	    Date: <%= photo.created_at.strftime("%Y/%m/%d") %>
+	    <br/>
+	    Tag: <%= best_in_place photo, :tag_list, { :classes => "tag_field" } %>
+	  </li>
+	<% end %>
+</ul>
+<%= paginate items, :remote => true %>
+<script>
+  	$('.tag_field').bind("ajax:success", function(){
+		$.ajax({
+		  url: '/get_all_tags',
+		  type: 'GET',
+		  data: '', 
+		  success: function(response) {
+		    $("#tags_container").html(response);
+		  }
+		});
+	});
+</script>
