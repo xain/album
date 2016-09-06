@@ -1,6 +1,23 @@
-== README
+= \hello meizu!
 
-hello meizu!
+== 简介
 
+这是一个使用Ruby on Rails 4搭建的基本图库管理系统。
 
-brew install ImageMagick
+有以下功能：
+* 基于paperclip插件的图片上传功能。
+* 基于kaminari插件的分页显示功能。
+* 基于best_in_place插件的页面在线编辑tag功能。新添加的tag自动在tag列表中显示。
+* 基于jquery-rails等插件drag and drop tag添加功能。添加后的tag自动在图片列表更新。
+
+== 已知问题
+打开页面后首页使用drag and drog添加tag后，继续在线编辑这个图片的tag时，tag框的tag为未更新前的tags。点击任一tag分类或分页链接后没有这个问题。
+
+== 使用方法
+使用需要安装 ImageMagick，在Mac平台可以使用以下命令安装：
+
+ brew install ImageMagick
+
+== 参考教程
+http://jameshuynh.com/2016/01/28/ajax-pagination-on-rails-and-kaminari/
+https://coderwall.com/p/kqb3xq/rails-4-how-to-partials-ajax-dead-easy
