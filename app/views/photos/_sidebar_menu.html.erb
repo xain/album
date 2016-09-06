@@ -1,8 +1,27 @@
 <ul class='tags'>
-        <li> <a data-remote="true" href="/fetch_items?tag_id=0">unTag</a> </li>
+        <li class='tag-zone' data-tagid=0> <a data-remote="true" href="/fetch_items?tag_id=0">unTag</a> </li>
         <%tags.each do |tag| %>
-        	<li>
+        	<li class='tag-zone' data-tagid=<%=tag.id%>>
         		<%= link_to tag.name, fetch_items_path(:tag_id => tag.id), :remote => true %>
         	</li>
         <% end %>
 </ul>
+<script>
+$('.tag-zone').droppable({
+  drop: function(event, ui) {
+  	tag_id = $(this).attr("data-tagid");
+  	photo_id = ui.draggable.attr("data-photoid");
+    $.ajax({
+		url: '/dnd_add_tag',
+		type: 'POST',
+	  	data: {id:photo_id,tag_id:tag_id}, 
+	  	success: function(response) {
+	    	$("#photo-" + photo_id ).find('span').html(response);
+	    	$("#photo-" + photo_id ).find('span').attr("data-bip-value",response);
+	    	$("#photo-" + photo_id ).find('span').attr("data-bip-original-content",response);
+	  	}
+	});
+  }
+});
+
+</script>

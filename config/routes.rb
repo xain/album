@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  get 'photos/index'
+  #get 'photos/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'photos#index'
+  root :to => 'photos#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -57,4 +57,5 @@ Rails.application.routes.draw do
   #   end
   get '/fetch_items' => 'photos#from_tag', as: 'fetch_items'
   get '/get_all_tags' => 'photos#get_all_tags'
+  post '/dnd_add_tag' => 'photos#dnd_add_tag'
 end

@@ -17,6 +17,8 @@
 
 //= require best_in_place
 
+//= require jquery-ui/draggable
+//= require jquery-ui/droppable
 
 $(document).ready(function() {
   /* Activating Best In Place */

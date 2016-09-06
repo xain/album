@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
 		@tags = Tag.all
 		# ajax request will result in request.xhr? not nil
 		# layout will be true if request is not an ajax request
-		render action: :index, layout: request.xhr? == nil
+		#render action: :index, layout: request.xhr? == nil
 	end
 
   	def update
@@ -13,6 +13,19 @@ class PhotosController < ApplicationController
 	    new_attributes = params.require(:photo).permit(:tag_list)
 	    @photo.update_attributes(new_attributes)
 	    respond_with @photo
+	end
+
+	def dnd_add_tag
+		photo = Photo.find(params[:id])
+		tag_id = params[:tag_id]
+		if tag_id.to_i == 0
+			photo.tags = []
+		else
+			tag = Tag.find(tag_id)
+			photo.tags << tag
+		end
+		#render json: ..., status: ...
+		render text: photo.tag_list
 	end
 
 	def from_tag

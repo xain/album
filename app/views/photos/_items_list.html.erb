@@ -1,13 +1,15 @@
 <ul class='photos clearfix'>
 	<% items.each do |photo| %>
 	  <li>
-	    <%= image_tag photo.file.url(:thumb) %>
+	    <%= image_tag photo.file.url(:thumb), :class => "image", :data => {:photoid => photo.id} %>
 	    <br/>
 	    Title: <%= photo.title.gsub(/^(.{20,}?).*$/m,'\1...') %>
 	    <br/>
 	    Date: <%= photo.created_at.strftime("%Y/%m/%d") %>
 	    <br/>
-	    Tag: <%= best_in_place photo, :tag_list, { :classes => "tag_field" } %>
+	    <div id='photo-<%= photo.id %>'>
+	    	Tag: <%= best_in_place photo, :tag_list, { :class => "tag_field" } %>
+		</div>
 	  </li>
 	<% end %>
 </ul>
@@ -23,4 +25,16 @@
 		  }
 		});
 	});
+
+	$('.image').draggable({
+    revert:true,
+    proxy:'clone',
+    onStartDrag:function(){
+        $(this).draggable('options').cursor = 'not-allowed';
+        $(this).draggable('proxy').css('z-index',10);
+    },
+    onStopDrag:function(){
+        $(this).draggable('options').cursor='move';
+    }
+});
 </script>
