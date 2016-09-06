@@ -49,7 +49,7 @@ body {
 }
 
 ul.tags li {
-	height: 50px;
+	height: 60px;
 }
 
 .tag_field input {
@@ -104,4 +104,9 @@ div.loading {
   margin-top: 20px;
   font-size: 13px;
   color: #333;
+}
+
+.ui-state-hover {
+	border: 1px solid yellow;
+    background-color:yellow;
 }

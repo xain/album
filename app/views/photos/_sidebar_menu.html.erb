@@ -8,6 +8,7 @@
 </ul>
 <script>
 $('.tag-zone').droppable({
+  hoverClass: "ui-state-hover",
   drop: function(event, ui) {
   	tag_id = $(this).attr("data-tagid");
   	photo_id = ui.draggable.attr("data-photoid");
