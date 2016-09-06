@@ -50,3 +50,5 @@ gem 'paperclip', '~> 4.3.2'
 gem 'best_in_place', '~> 3.0.1'
 gem 'responders', '~> 2.0'
 gem 'jquery-ui-rails'
+gem 'rails_12factor', group: :production
+ruby "2.2.1"
