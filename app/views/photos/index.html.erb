@@ -4,6 +4,10 @@
         <div id='tags_container'>
     		<%= render partial: 'sidebar_menu', locals: { tags: @tags} %>
     	</div>
+    	<h2>Uplad new photo</h2>
+    	<div id='upload_link'>
+    		<%= link_to 'New Photo', new_photo_path %>
+    	</div>
     </div>
     <div id="right_col">
 		<%= render partial: 'item_grid', locals: { items: @photos} %>

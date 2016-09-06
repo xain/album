@@ -1,0 +1,40 @@
+<div id="wrap">
+    <div id="left_col">
+      <h2>Tags</h2>
+        <div id='tags_container'>
+        <%= render partial: 'sidebar_menu', locals: { tags: @tags} %>
+      </div>
+      <h2>Uplad new photo</h2>
+      <div id='upload_link'>
+        <%= link_to 'New Photo', new_photo_path %>
+      </div>
+    </div>
+    <div id="right_col">
+      <h2>Upload a new photo</h2>
+    <%= form_for @photo, :url => photos_path, :html => { :multipart => true } do |f| %>
+      <% if @photo.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+
+          <ul>
+          <% @photo.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :title %><br>
+        <%= f.text_field :title %>
+      </div>
+      <div class="field">
+        <%= f.label :file %><br>
+        <%= f.file_field :file %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+    </div>
+</div>

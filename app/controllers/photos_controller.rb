@@ -1,11 +1,25 @@
 class PhotosController < ApplicationController
 	respond_to :html, :xml, :json
 	def index
-		@photos = Photo.page(params[:page] || 1).per(4)
+		@photos = Photo.page(params[:page] || 1).order('updated_at DESC').per(4)
 		@tags = Tag.all
 		# ajax request will result in request.xhr? not nil
 		# layout will be true if request is not an ajax request
 		#render action: :index, layout: request.xhr? == nil
+	end
+
+	def new
+		@tags = Tag.all
+    	@photo = Photo.new
+  	end
+
+	def create
+		@photo = Photo.new(photo_params)
+		if @photo.save
+		  redirect_to action: 'index', notice: 'photo was successfully created.'
+		else
+		  render action: 'new', alert: 'Photo could not be created' 
+		end
 	end
 
   	def update
@@ -49,6 +63,6 @@ class PhotosController < ApplicationController
 	private
 
 	def photo_params
-	  params.require(:photo).permit(:title, :tag_list)
+	  params.require(:photo).permit(:title, :tag_list, :file)
 	end
 end
