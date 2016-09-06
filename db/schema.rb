@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160905164636) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "photos", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at",        null: false
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20160905164636) do
     t.integer "photo_id", null: false
   end
 
-  add_index "photos_tags", ["photo_id", "tag_id"], name: "index_photos_tags_on_photo_id_and_tag_id"
-  add_index "photos_tags", ["tag_id", "photo_id"], name: "index_photos_tags_on_tag_id_and_photo_id"
+  add_index "photos_tags", ["photo_id", "tag_id"], name: "index_photos_tags_on_photo_id_and_tag_id", using: :btree
+  add_index "photos_tags", ["tag_id", "photo_id"], name: "index_photos_tags_on_tag_id_and_photo_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"
